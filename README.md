@@ -26,7 +26,7 @@
 
 ## 📂 Portfólio
 
-🚧 *Em breve estarei adicionando meus principais projetos aqui!*  
+🚧 (https://aninovasites.xo.je/)  
 
 ---
 
