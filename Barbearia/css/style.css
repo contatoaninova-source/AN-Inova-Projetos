@@ -1,0 +1,1039 @@
+/* =============================================================
+   STYLE.CSS — Landing da Home atualizado
+   - Inclui carrossel com fade e overlay
+   - Topbar desktop + mobile
+   - Busca animada
+   ============================================================= */
+
+/* ------------------ Paleta de cores ------------------ */
+:root {
+  --black: #000000;       /* Preto padrão do fundo */
+  --graphite: #222222;    /* Cinza escuro para elementos secundários */
+  --dark-2: #2d2d2d;      /* Outra tonalidade de cinza escuro */
+  --gold: #a4874f;        /* Dourado principal */
+  --gold-2: #8f7847;      /* Dourado secundário */
+  --ivory: #ffffff;       /* Branco padrão de textos */
+  --placeholder: #e0e0e0; /* Cor clara para placeholder e fundos neutros */
+}
+
+/* ------------------ Reset e tipografia ------------------ */
+* {
+  box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho dos elementos */
+}
+
+html, body {
+  margin: 0;              /* Remove margin padrão do browser */
+  padding: 0;             /* Remove padding padrão do browser */
+}
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; /* Fonte moderna */
+  color: var(--ivory);    /* Cor padrão do texto */
+  background: var(--black); /* Fundo preto */
+  line-height: 1.4;       /* Espaçamento entre linhas */
+}
+
+img {
+  max-width: 100%;        /* Imagem não ultrapassa largura do container */
+  display: block;         /* Remove espaçamento embaixo das imagens */
+}
+
+a {
+  color: inherit;         /* Herdar cor do elemento pai */
+  text-decoration: none;  /* Remove sublinhado */
+}
+
+.container {
+  width: 100%;                              /* Ocupa 100% da largura disponível */
+  max-width: 1200px;                        /* Limite máximo de largura */
+  margin-inline: auto;                       /* Centraliza horizontalmente */
+  padding-inline: clamp(16px, 4vw, 32px);   /* Padding responsivo */
+}
+
+/* ------------------ TOPBAR / NAV ------------------ */
+.topbar {
+  background: linear-gradient(#303030, #242424); /* Gradiente no topo */
+  position: sticky;          /* Fixa o topo durante scroll */
+  top: 0;                    /* Topo da página */
+  z-index: 50;               /* Fica acima de outros elementos */
+  border-bottom: 4px solid #000; /* Linha inferior */
+}
+
+.topbar__inner {
+  display: grid;                     /* Grid para organizar logo, nav e ações */
+  grid-template-columns: auto 1fr auto; /* Logo | nav | ações */
+  align-items: center;               /* Centraliza verticalmente */
+  gap: 16px;                          /* Espaçamento entre colunas */
+  padding-block: 12px;                /* Padding vertical */
+}
+
+.brand img {
+  width: 64px;                        /* Largura do logo */
+  height: 64px;                       /* Altura do logo */
+  border-radius: 14px;                /* Cantos arredondados */
+  border: 2px solid var(--gold);      /* Borda dourada */
+}
+
+/* ------------------ Navegação desktop ------------------ */
+.nav-desktop ul {
+  list-style: none;       /* Remove marcadores */
+  display: flex;          /* Itens em linha */
+  gap: 24px;              /* Espaço entre links */
+  margin: 0;              /* Remove margin padrão */
+  padding: 0;             /* Remove padding padrão */
+}
+
+.nav-desktop a {
+  color: var(--ivory);    /* Cor do link */
+  font-weight: 600;       /* Peso da fonte */
+  padding: 8px 0;         /* Espaço vertical */
+}
+
+.nav-desktop a:hover {
+  color: var(--gold);     /* Hover dourado */
+}
+
+/* ------------------ Ações direita (busca + hamburger) ------------------ */
+/* ==============================
+   HAMBÚRGUER & DRAWER OTIMIZADO — Comentado linha por linha
+   ============================== */
+
+/* Container de ações (busca + hambúrguer) */
+.actions {
+  display: flex;             /* Organiza botões horizontalmente */
+  align-items: center;       /* Centraliza verticalmente */
+  gap: 8px;                  /* Espaçamento entre os botões */
+}
+
+/* Botões circulares (ícones como busca e hambúrguer) */
+.icon-btn {
+  width: 42px;               /* Largura do botão */
+  height: 42px;              /* Altura do botão */
+  border-radius: 50%;        /* Formato circular */
+  display: grid;             /* Grid para centralizar conteúdo */
+  place-items: center;       /* Centraliza ícone dentro do botão */
+  background: #3a3a3a;      /* Cor de fundo */
+  border: 1px solid #444;    /* Borda discreta */
+  color: #fff;               /* Cor do ícone */
+  cursor: pointer;           /* Cursor ao passar mouse */
+  transition: background 0.2s ease; /* Animação ao mudar fundo */
+}
+
+.icon-btn:hover {
+  background: #454545;       /* Fundo mais claro no hover */
+}
+
+.icon-btn svg {
+  width: 22px;               /* Largura do ícone SVG */
+  height: 22px;              /* Altura do ícone SVG */
+}
+
+/* ---------------- HAMBÚRGUER MOBILE ---------------- */
+.hamburger {
+  display: none;             /* Esconde por padrão */
+  background: none;          /* Sem fundo */
+  border: none;              /* Sem borda */
+  padding: 0;                /* Sem padding */
+  cursor: pointer;           /* Cursor ao passar mouse */
+  z-index: 150;              /* Fica acima de outros elementos */
+}
+
+.hamburger__bar {
+  display: block;            /* Cada barra visível */
+  width: 22px;               /* Largura da barra */
+  height: 2px;               /* Altura da barra */
+  background: #fff;          /* Cor branca */
+  margin: 4px 0;             /* Espaçamento entre barras */
+  transition: background 0.2s, transform 0.3s; /* Animação suave */
+}
+
+/* Topbar interna (logo + nav + ações) */
+.topbar__inner {
+  display: flex;             /* Flexbox horizontal */
+  align-items: center;       /* Centraliza verticalmente */
+  justify-content: space-between; /* Espaça logo e ações/extremos */
+  gap: 16px;                 /* Espaçamento entre elementos */
+}
+
+/* ---------------- DRAWER MOBILE ---------------- */
+.drawer {
+  position: fixed;           /* Fixa na tela inteira */
+  inset: 0;                  /* Topo | direita | baixo | esquerda = 0 */
+  pointer-events: none;      /* Bloqueia clique quando fechado */
+  z-index: 100;              /* Entre conteúdo e hambúrguer */
+}
+
+/* Backdrop semi-transparente do drawer */
+.drawer__backdrop {
+  position: absolute;        /* Posiciona atrás do painel */
+  inset: 0;                  /* Cobre toda área do drawer */
+  background: rgba(0,0,0,0.6); /* Fundo escuro translúcido */
+  opacity: 0;                /* Invisível inicialmente */
+  transition: opacity 0.25s ease; /* Animação suave */
+  z-index: 100;              /* Fica atrás do painel */
+  pointer-events: none;      /* Não clicável fechado */
+}
+
+/* Painel lateral do drawer */
+.drawer__panel {
+  position: absolute;        /* Posicionado a partir da tela */
+  top: 0;                    /* Topo do viewport */
+  left: 0;                   /* Lado esquerdo */
+  width: min(86vw, 360px);   /* Largura responsiva */
+  height: 100%;              /* Altura total */
+  background: #121212;       /* Cor de fundo */
+  color: #fff;               /* Cor do texto */
+  transform: translateX(-100%); /* Inicialmente fora da tela */
+  transition: transform 0.3s ease; /* Animação de entrada */
+  display: flex;             /* Flex container vertical */
+  flex-direction: column;    /* Itens empilhados */
+  padding: 16px 18px 24px;   /* Espaçamento interno */
+  border-right: 1px solid #222; /* Borda direita discreta */
+  z-index: 150;              /* Acima do backdrop */
+  pointer-events: auto;      /* Permite interação com links */
+}
+
+/* Botão de fechar drawer */
+.drawer__close {
+  align-self: flex-end;      /* Alinha à direita */
+  background: #222;          /* Fundo escuro */
+  border: 1px solid #333;    /* Borda discreta */
+  cursor: pointer;           /* Cursor ao passar mouse */
+}
+
+/* Lista de links dentro do drawer */
+.drawer__nav {
+  list-style: none;          /* Remove marcadores */
+  margin: 12px 0 0;          /* Margem superior */
+  padding: 0;                /* Sem padding */
+  display: flex;             /* Flex vertical */
+  flex-direction: column;    /* Itens empilhados */
+  gap: 10px;                 /* Espaçamento entre links */
+}
+
+.drawer__nav a {
+  display: block;            /* Ocupa toda largura */
+  padding: 10px 12px;        /* Espaçamento interno */
+  border-radius: 6px;        /* Bordas arredondadas */
+  background: #1c1c1c;       /* Cor de fundo do link */
+  color: #fff;               /* Cor do texto */
+  text-decoration: none;     /* Remove underline */
+  transition: background 0.2s; /* Animação de hover */
+}
+
+.drawer__nav a:hover {
+  background: #262626;       /* Fundo mais claro no hover */
+}
+
+/* ---------------- ABRIR / FECHAR ---------------- */
+.drawer--open {
+  pointer-events: auto;      /* Habilita interação */
+}
+
+.drawer--open .drawer__panel {
+  transform: translateX(0);  /* Painel visível */
+}
+
+.drawer--open .drawer__backdrop {
+  opacity: 1;                 /* Fundo visível */
+  pointer-events: auto;       /* Clique fecha o drawer */
+}
+
+/* ---------------- RESPONSIVIDADE HAMBÚRGUER ---------------- */
+@media (max-width: 860px) {
+  .nav-desktop {
+    display: none;            /* Esconde menu desktop */
+  }
+  .hamburger {
+    display: inline-grid;     /* Mostra botão hambúrguer */
+  }
+}
+
+
+/* ------------------ CARROSSEL COM FADE ------------------ */
+.section {
+  margin-top: 24px;            /* Espaço acima do carrossel */
+}
+
+.carousel {
+  position: relative;          /* Para controles e overlay */
+  border-radius: 8px;          /* Cantos arredondados */
+  overflow: hidden;            /* Esconde partes que extrapolam */
+  background: var(--placeholder); /* Fundo temporário */
+}
+
+.carousel__track {
+  position: relative; 
+  height: clamp(180px, 28vw, 460px); /* Altura responsiva */
+}
+
+.carousel__slide {
+  position: absolute;           /* Sobreposição de slides */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;                   /* Inicialmente invisível */
+  transition: opacity 1s ease;  /* Transição suave */
+  display: grid;                /* Centraliza conteúdo */
+  place-items: center;          /* Centraliza vertical/horizontal */
+}
+
+.carousel__slide.active {
+  opacity: 1;                  /* Slide ativo visível */
+  z-index: 1;                  /* Fica acima dos outros */
+}
+
+.carousel__slide img {
+  width: 100%;                  /* Ocupa largura total */
+  height: 100%;                 /* Ocupa altura total */
+  object-fit: cover;            /* Cobre área sem distorcer */
+  display: block;
+}
+
+/* Overlay translúcido com texto */
+.carousel__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35); /* Sombra sobre a imagem */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;             /* Padding lateral */
+}
+
+.carousel__overlay h2 {
+  font-size: 2rem;             /* Tamanho do título */
+  margin-bottom: 0.5rem;       /* Espaço abaixo do título */
+  font-weight: 800;            /* Negrito */
+}
+
+.carousel__overlay p {
+  font-size: 1.2rem;           /* Tamanho do parágrafo */
+  font-weight: 600;
+}
+
+/* Controles do carrossel */
+.carousel__control {
+  position: absolute;
+  top: 50%;                    /* Centraliza vertical */
+  transform: translateY(-50%);
+  background: rgba(0,0,0,.45); /* Fundo semi-transparente */
+  color: #fff;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;         /* Centraliza ícone */
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carousel__control:hover {
+  background: rgba(0,0,0,.65); /* Escurece ao passar o mouse */
+}
+
+.carousel__control.prev {
+  left: 10px;                  /* Botão esquerdo */
+}
+
+.carousel__control.next {
+  right: 10px;                 /* Botão direito */
+}
+
+/* Dots do carrossel */
+.carousel__dots {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+.carousel__dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  background: #aaa;
+  opacity: .6;
+  cursor: pointer;
+}
+
+.carousel__dots button.active {
+  background: #fff;
+  opacity: 1;
+}
+
+/* ------------------ HERO ------------------ */
+.hero {
+  background: #000;             /* Fundo preto */
+  padding-block: 32px;          /* Padding vertical */
+}
+
+.hero h1 {
+  text-align: center;              /* Centraliza título */
+  margin: 0;                       /* Remove margin padrão */
+  font-size: clamp(28px, 5vw, 48px); /* Tamanho responsivo do título */
+  font-weight: 800;                /* Negrito */
+  letter-spacing: .5px;            /* Espaçamento entre letras */
+}
+
+.hero__subtitle {
+  text-align: center;               /* Centraliza subtítulo */
+  color: var(--gold);               /* Cor dourada */
+  margin-top: 8px;                  /* Espaço acima do subtítulo */
+  font-weight: 700;                 /* Negrito médio */
+  font-size: clamp(14px, 2.6vw, 24px); /* Tamanho responsivo */
+}
+
+.grid {
+  margin-top: 28px;                 /* Espaço acima da grid de tiles */
+  display: grid;                    /* Grid layout */
+  gap: clamp(12px, 2vw, 18px);      /* Espaçamento responsivo entre tiles */
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+}
+
+.tile {
+  background: var(--gold);          /* Fundo dourado */
+  color: #111;                      /* Cor do texto interno */
+  border-radius: 6px;               /* Cantos arredondados */
+  aspect-ratio: 1/1;                /* Mantém quadrado */
+  display: flex;                     /* Flex para centralizar conteúdo */
+  align-items: center;               /* Alinha vertical */
+  justify-content: center;           /* Alinha horizontal */
+  flex-direction: column;            /* Ícone em cima, label embaixo */
+  transition: transform .15s ease, filter .2s ease; /* Animação suave */
+}
+
+.tile:hover {
+  transform: translateY(-4px);      /* Levanta tile ao passar o mouse */
+  filter: brightness(1.05);         /* Leve brilho */
+}
+
+.tile__icon svg {
+  width: 52px;                       /* Tamanho do ícone */
+  height: 52px;
+  color: #fff;                       /* Cor do ícone branca */
+}
+
+.tile__label {
+  margin-top: 10px;                  /* Espaço entre ícone e label */
+  font-weight: 800;                  /* Negrito */
+  color: var(--ivory);               /* Texto branco */
+  text-shadow: 0 1px 0 rgba(0,0,0,.3); /* Sombra para destacar */
+}
+
+/* ------------------ CTA DOURADA ------------------ */
+.cta {
+  background: var(--gold);           /* Fundo dourado */
+  color: #111;                       /* Texto preto */
+  padding-block: 22px;               /* Padding vertical */
+  margin-top: 28px;                  /* Espaço acima */
+}
+
+.cta__inner {
+  display: flex;                     /* Flex container */
+  align-items: center;               /* Centraliza vertical */
+  justify-content: space-between;    /* Espaço entre badge e botão */
+  gap: 20px;                         /* Espaçamento interno */
+}
+
+.cta__badge {
+  background: #111;                  /* Fundo preto */
+  color: #fff;                       /* Texto branco */
+  font-weight: 800;                  /* Negrito */
+  border-radius: 6px;                /* Bordas arredondadas */
+  padding: 14px 20px;                /* Espaçamento interno */
+  letter-spacing: .4px;              /* Espaçamento entre letras */
+}
+
+.cta__button {
+  background: #fff;                  /* Fundo branco */
+  color: #111;                       /* Texto preto */
+  border-radius: 999px;              /* Botão arredondado */
+  padding: 14px 22px;                /* Espaçamento interno */
+  font-weight: 800;                   /* Negrito */
+  border: 0;                          /* Sem borda */
+  display: inline-block;
+}
+
+.cta__button:hover {
+  background: #f1f1f1;               /* Leve mudança de cor no hover */
+}
+
+/* Linha separadora preta */
+.separator {
+  height: 12px;                       /* Altura da linha */
+  background: #000;                    /* Cor preta */
+}
+
+/* ------------------ FOOTER ------------------ */
+.footer {
+  background: #171717;                 /* Fundo escuro */
+  color: var(--ivory);                 /* Texto branco */
+  padding: 40px 0 20px;                /* Padding vertical */
+  font-size: 0.95rem;                  /* Tamanho da fonte */
+}
+
+.footer__grid {
+  display: grid;                        /* Grid layout para colunas */
+  grid-template-columns: repeat(3,1fr); /* 3 colunas iguais */
+  gap: 24px;                            /* Espaço entre colunas */
+  max-width: 1200px;                    /* Largura máxima */
+  margin: 0 auto;                       /* Centraliza horizontalmente */
+  padding-inline: clamp(16px, 4vw, 32px); /* Padding responsivo */
+}
+
+.footer__col h3 {
+  font-weight: 800;                      /* Negrito */
+  margin-bottom: 12px;                   /* Espaço abaixo do título */
+  color: var(--gold);                    /* Cor dourada */
+}
+
+.footer__col ul {
+  list-style: none;                      /* Remove marcadores */
+  padding: 0;                            /* Remove padding */
+  margin: 0;                             /* Remove margens */
+}
+
+.footer__col ul li {
+  margin-bottom: 6px;                    /* Espaço entre itens */
+}
+
+.footer__col ul li a {
+  color: var(--ivory);                   /* Texto branco */
+  text-decoration: none;                 /* Remove sublinhado */
+  transition: color .2s;                 /* Animação suave */
+}
+
+.footer__col ul li a:hover {
+  color: var(--gold);                     /* Hover dourado */
+}
+
+.footer__socials a {
+  display: inline-block;                  /* Para ficar lado a lado */
+  margin-right: 12px;                     /* Espaço entre ícones */
+  color: var(--ivory);                    /* Branco */
+  text-decoration: none;                   /* Remove sublinhado */
+  font-weight: 600;                       /* Negrito */
+  transition: color .2s;                 /* Animação suave */
+}
+
+.footer__socials a:hover {
+  color: var(--gold);                     /* Hover dourado */
+}
+
+.footer__bottom {
+  text-align: center;                     /* Centraliza texto */
+  margin-top: 24px;                       /* Espaço acima */
+  border-top: 1px solid #444;             /* Linha superior */
+  padding-top: 12px;
+  font-size: 0.85rem;
+  color: #ccc;                            /* Cinza claro */
+}
+
+/* ------------------ Responsividade do footer ------------------ */
+@media(max-width:860px){
+  .footer__grid{
+    grid-template-columns: 1fr;           /* Uma coluna no mobile */
+  }
+  .footer__col{
+    margin-bottom: 24px;                  /* Espaço entre colunas empilhadas */
+  }
+}
+
+/* ------------------ RESPONSIVIDADE GERAL ------------------ */
+@media (max-width: 1024px){
+  .grid{
+    grid-template-columns: repeat(4,1fr); /* Mantém 4 colunas */
+  }
+}
+
+@media (max-width: 860px){
+  .nav-desktop{
+    display: none;                        /* Esconde nav desktop */
+  }
+  .hamburger{
+    display: inline-grid;                  /* Mostra hamburger */
+  }
+  .btn-pages{
+    display: none;
+  }
+}
+
+@media (max-width: 720px){
+  .grid{
+    grid-template-columns: repeat(2,1fr);  /* 2 colunas no mobile */
+  }
+  .tile__icon svg{
+    width: 44px;
+    height: 44px;
+  }
+  .cta__inner{
+    flex-direction: column;                /* Alinha vertical */
+    align-items: stretch;
+  }
+  .cta__badge{
+    width: 100%;                           /* Badge ocupa toda largura */
+    text-align: center;
+  }
+  .cta__button{
+    text-align: center;                     /* Centraliza texto do botão */
+  }
+}
+
+@media (max-width: 400px){
+  .brand img{
+    width: 52px;                            /* Reduz logo */
+    height: 52px;
+  }
+  .icon-btn{
+    width: 38px;                             /* Reduz ícones */
+    height: 38px;
+  }
+}
+
+/* ------------------ CARROSSEL RESPONSIVO ------------------ */
+@media (max-width: 768px){
+  .carousel__overlay h2{
+    font-size: 1.5rem;                      /* Título menor */
+  }
+  .carousel__overlay p{
+    font-size: 1rem;                        /* Parágrafo menor */
+  }
+}
+
+/* ------------------ Busca animada ------------------ */
+.search-wrapper{
+  position: relative;            /* Para posicionamento interno */
+  display: flex;                 /* Flex container */
+  align-items: left;           /* Alinha vertical */
+  overflow: hidden;              /* Esconde excesso */
+}
+
+.search-wrapper .search-input{
+  width: 0;                      /* Inicialmente invisível */
+  opacity: 0;                    /* Invisível inicialmente */
+  padding: 0.6rem 0.8rem;        /* Padding inicial */
+  border-radius: 6px;           /* Bordas arredondadas */
+  border: none;                  /* Sem borda */
+  outline: none;                 /* Sem contorno */
+  font-size: 1rem;               /* Tamanho da fonte */
+  transition: width 0.35s ease, opacity 0.35s ease, padding 0.35s ease; /* Animação suave */
+  margin-left: 8px;              /* Espaço à esquerda */
+  background: #fff;              /* Fundo branco */
+  color: #111;                   /* Cor do texto */
+}
+
+.search-wrapper.active .search-input{
+  width: 200px;                  /* Largura expandida */
+  opacity: 1;                     /* Torna visível */
+  padding: 0.6rem 0.8rem;         /* Mantém padding */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25); /* Sombra leve */
+}
+
+.search-wrapper .search-btn{
+  z-index: 2;                     /* Mantém botão acima do input */
+}
+
+
+
+
+
+/* ==============================================================
+   PRODUTO-DETALHES.CSS — Estilo aprimorado para página de detalhes
+   ============================================================== */
+
+/* Container principal: imagem + info */
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+/* ---------------- IMAGEM PRINCIPAL ---------------- */
+.product-detail__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-detail__gallery .main-image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.product-detail__gallery .main-image:hover {
+  transform: scale(1.03);
+}
+
+/* Miniaturas */
+.product-detail__gallery .thumbnails {
+  display: flex;
+  gap: 8px;
+}
+
+.product-detail__gallery .thumbnails .thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: transform 0.2s, opacity 0.2s;
+  border: 2px solid transparent;
+}
+
+.product-detail__gallery .thumbnails .thumb:hover,
+.product-detail__gallery .thumbnails .thumb.active {
+  opacity: 1;
+  transform: scale(1.05);
+  border-color: var(--gold);
+}
+
+/* ---------------- INFORMAÇÕES DO PRODUTO ---------------- */
+.product-detail__info h1 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--ivory);
+}
+
+.product-detail__price {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.product-detail__description {
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.6;
+  color: #ddd;
+  margin-bottom: 24px;
+}
+
+/* ---------------- BOTÕES DE AÇÃO ---------------- */
+.product-detail__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cta__button {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.cta__button.btn-secondary {
+  background: var(--ivory);
+  color: var(--black);
+}
+
+.cta__button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+/* ---------------- PRODUTOS RELACIONADOS ---------------- */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.product-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.05);
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.product-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.product-card:hover .product-card__overlay {
+  opacity: 1;
+}
+
+.product-card__button {
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s, filter 0.2s;
+}
+
+.product-card__button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.product-card__content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card__name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ivory);
+}
+
+.product-card__price {
+  font-weight: 800;
+  color: var(--gold);
+}
+
+/* ---------------- RESPONSIVIDADE ---------------- */
+@media (max-width: 1024px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .product-detail__info h1,
+  .product-detail__price,
+  .product-detail__description {
+    text-align: center;
+  }
+
+  .product-detail__actions {
+    justify-content: center;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-detail__gallery .thumbnails .thumb {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+
+/* ======================================================
+   GRID DE PRODUTOS / PRODUTOS-LISTA
+   ====================================================== */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* CARD DE PRODUTO */
+.product-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* IMAGEM */
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* OVERLAY AO PASSAR O MOUSE */
+.product-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-card__overlay {
+  opacity: 1;
+}
+
+/* BOTÃO "VER DETALHES" */
+.product-card__button {
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.product-card__button:hover {
+  background: var(--gold-2);
+  transform: translateY(-2px);
+}
+
+/* CONTEÚDO ABAIXO DA IMAGEM */
+.product-card__content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card__name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111;
+}
+
+.product-card__price {
+  font-weight: 800;
+  color: #fff;
+  background: var(--gold);
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) { .product-list { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 860px)  { .product-list { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 480px)  { .product-list { grid-template-columns: 1fr; } }
+
+
+
+
+
+/* ======================================================
+   PAGINA DE CONTATO
+   ====================================================== */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--ivory);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #222;
+  color: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+}
+
+.contact-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--gold);
+}
+
+.contact-info p {
+  margin-bottom: 8px;
+  color: #ddd;
+}
+
+/* Responsivo */
+@media (max-width: 860px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+

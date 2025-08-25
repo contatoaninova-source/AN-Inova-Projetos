@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada</title>
+  <link rel="stylesheet" href="style.css"> <!-- usa o mesmo CSS do site -->
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <style>
+    /* Estilo exclusivo para a página de erro */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+    }
+
+    .error-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #000 60%, #1a0000 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, transparent 70%);
+      animation: pulse 6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    .error-section h1 {
+      font-size: 6rem;
+      margin-bottom: 10px;
+      color: #ff0000;
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff4d4d;
+    }
+
+    .error-section p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .error-section a {
+      display: inline-block;
+      padding: 14px 30px;
+      background: #ff0000;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #ff0000;
+    }
+
+    .error-section a:hover {
+      background: #cc0000;
+      box-shadow: 0 0 20px #ff1a1a;
+    }
+
+    footer {
+      background: #000;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteúdo da página de erro -->
+  <main>
+    <section class="error-section">
+      <h1>404</h1>
+      <p>⚠️ Ops! A página que você procura não existe<br>ou ocorreu um erro no servidor.</p>
+      <a href="index.php" class="btn-error">⬅ Voltar ao Início</a>
+    </section>
+  </main>
+
+  <style>
+/* Botão estilizado neon/futurista */
+.btn-error {
+  display: inline-block;
+  padding: 16px 36px;
+  background: #ff0000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 40px #ff6666;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-error::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.btn-error:hover {
+  background: #cc0000;
+  border-color: #ff0000;
+  box-shadow: 0 0 20px #ff0000, 0 0 40px #ff4d4d, 0 0 60px #ff6666;
+}
+
+.btn-error:hover::before {
+  transform: rotate(45deg) scale(1.2);
+}
+</style>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>© 2025 Antony Silva - Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>

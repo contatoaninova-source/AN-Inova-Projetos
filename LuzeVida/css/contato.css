@@ -1,0 +1,434 @@
+/* Resetando margens e preenchimentos padrão de todos os elementos */
+* {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove preenchimentos padrão */
+    box-sizing: border-box; /* Inclui bordas e preenchimentos no cálculo de largura e altura */
+}
+
+/* Definição do fundo da página com gradiente e fonte padrão */
+body {
+    background: linear-gradient(90deg, #ffffff, #89bcff, #357ac2); /* Gradiente de fundo */
+    font-family: 'Simonetta', cursive; /* Fonte padrão */
+    text-align: center; /* Centraliza o texto */
+    overflow-x: hidden; /* Esconde o overflow horizontal */
+}
+
+/* Responsividade para telas muito pequenas */
+@media screen and (max-width: 375px) { 
+    .body-container {
+        width: 100%; /* Largura total da tela */
+        padding: 0; /* Remove preenchimento */
+        min-width: 100%; /* Garante que a largura mínima seja 100% */
+    }
+}
+
+/* Container principal para centralizar os elementos */
+.principal-container {
+    display: flex; /* Exibe os elementos como flexbox */
+    flex-direction: column; /* Direção da coluna */
+    align-items: center; /* Alinha os itens ao centro */
+    justify-content: center; /* Justifica o conteúdo ao centro */
+    padding: 0; /* Remove preenchimento */
+}
+
+/* Estilização do logotipo */
+.logo-container img {
+    max-width: 180px; /* Largura máxima da imagem */
+    height: auto; /* Altura automática */
+}
+
+/* Estilização do menu de navegação */
+.navegacao-container {
+    background-color: black;  /* Cor de fundo */
+    padding: 10px 0; /* Preenchimento interno */
+    width: 100vw; /* Largura total da viewport */
+    border-radius: 0; /* Bordas arredondadas */
+    margin-top: 10px;   /* Margem superior */
+}
+
+/* Ícone do menu (hambúrguer) */
+.menu-toggle {
+    display: none;  /* Esconde o ícone por padrão */
+    font-size: 32px; /* Tamanho da fonte */
+    cursor: pointer;    /* Cursor de ponteiro ao passar o mouse */
+    color: #e4e4e4; /* Cor do texto */
+    user-select: none; /* Impede a seleção do texto */
+}
+
+/* Responsividade para o menu e navegação */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Exibe o ícone em telas pequenas */
+        margin-right: 80%; /* Margem direita para posicionamento */
+        word-wrap: none; /* Impede quebra de linha */
+        font-size: 32px; /* Tamanho da fonte do ícone */
+        cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+        color: #e4e4e4; /* Cor do texto */
+        user-select: none; /* Impede a seleção do texto */
+        z-index: 20; /* Z-index para posicionamento */
+        position: relative; /* Posicionamento relativo */
+    }
+    .navegacao-lista {
+        display: flex; /* Exibe os itens como flexbox */
+        flex-direction: column; /* Direção da coluna */
+        gap: 15px; /* Espaçamento entre os itens */
+        background-color: #f0f0f0; /* Cor de fundo */
+        position: fixed; /* Posicionamento fixo */
+        top: 50%; /* Posicionamento vertical */
+        left: 50%; /* Posicionamento horizontal */
+        transform: translate(-50%, -50%) scale(0.95); /* Centraliza e escala */
+        z-index: 9; /* Z-index para posicionamento */
+        padding: 20px 30px; /* Preenchimento */
+        border-radius: 12px; /* Bordas arredondadas */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra */
+        visibility: hidden; /* Esconde o menu */
+        opacity: 0; /* Transparente */
+        pointer-events: none; /* Não interage */
+        transition: opacity 0.3s, transform 0.3s; /* Transição suave */
+        min-width: 200px; /* Largura mínima */
+        align-items: center; /* Centraliza itens */
+    }
+    .navegacao-lista.ativa {
+        visibility: visible; /* Mostra o menu */
+        opacity: 1; /* Opacidade total */
+        pointer-events: auto; /* Permite interação */
+        transform: translate(-50%, -50%) scale(1); /* Escala normal */
+    }
+}
+
+/* Estilo da lista de navegação */
+.navegacao-lista {
+    list-style: none; /* Remove marcadores da lista */
+    display: flex; /* Exibe os itens como flexbox */
+    justify-content: center; /* Centraliza os itens */
+    gap: 15px; /* Espaçamento entre os itens */
+}
+.navegacao-item {
+    display: inline; /* Exibe os itens em linha */
+}
+.navegacao-link {
+    font-family: "Simonetta", serif; /* Fonte dos links */
+    font-weight: 400; /* Peso da fonte */
+    text-decoration: none; /* Remove sublinhado */
+    color: rgb(255, 255, 255); /* Cor do texto */
+    font-size: 18px; /* Tamanho da fonte */
+    padding: 8px 12px; /* Preenchimento interno */
+    position: relative; /* Posição relativa para o efeito hover */
+} 
+.navegacao-lista.ativa .navegacao-link {
+    color: #000000; /* Cor do texto quando a lista está ativa */
+}
+.navegacao-link:hover {
+    background-color: transparent; /* Sem fundo ao passar o mouse */
+}
+.navegacao-link::after {
+    content: ""; /* Cria um pseudo-elemento */
+    display: block; /* Exibe como bloco */
+    width: 0; /* Largura inicial */
+    height: 3px; /* Altura do efeito */
+    background-color: #357ac2; /* Cor  do efeito */
+    transition: width 0.3s ease; /* Transição suave */
+    position: absolute; /* Posição absoluta */
+    bottom: -5px; /* Distância do fundo */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Transforma para centralizar */
+}
+.navegacao-link:hover::after {
+    width: 100%; /* Largura total ao passar o mouse */
+}
+
+/* Seção de introdução */
+.introducao-container {
+    width: 100%; /* Largura total da tela */
+    text-align: center; /* Centraliza o texto */
+}
+.introducao-titulo {
+    font-size: 40px; /* Tamanho da fonte do título */
+    text-shadow:    
+    0 2px 8px rgba(0,0,0,0.18),   /* sombra principal suave */
+    0 1px 0 #000000,                  /* brilho sutil em cima */
+    2px 2px 0 rgba(63,133,198,0.10); /* leve sombra azul */
+    font-family: 'Arial', sans-serif; /* Fonte do título */
+    color: #1d5b95; /* Cor do texto */
+}
+.introducao-texto {
+    font-family: 'Simonetta', cursive; /* Fonte do texto */
+    font-size: 18px; /* Tamanho da fonte */
+    color: black; /* Cor do texto */
+    margin-top: 10px; /* Margem superior */
+}
+@media screen and (max-width:375px) {
+    .introducao-container {
+        padding: 40px 40px; /* Preenchimento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Tamanho da fonte do título */
+    }
+    .introducao-texto {
+        font-size: 16px; /* Tamanho da fonte do texto */
+    }
+}
+@media screen and (max-width: 1024px) {
+    .introducao-container {
+        padding: 40px 40px; /* Preenchimento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Tamanho da fonte do título */
+    }
+    .introducao-texto {
+        font-size: 16px; /* Tamanho da fonte do texto */
+    }
+}
+@media screen and (max-width: 768px) {
+    .introducao-container {
+        padding: 40px 40px;     /* Preenchimento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Tamanho da fonte do título */
+    } 
+    .introducao-texto {
+        font-size: 16px; /* Tamanho da fonte do texto */
+    }
+}
+@media screen and (max-width: 480px) {
+    .introducao-container {
+        padding: 30px 10px; /* Preenchimento interno */
+    }
+    .introducao-titulo {
+        font-size: 28px; /* Tamanho da fonte do título */
+    }
+    .introducao-texto {
+        font-size: 14px; /* Tamanho da fonte do texto */
+    }
+}
+
+/* Container do formulário de contato */
+.contato-container {
+    max-width: 600px; /* Largura máxima do container */
+    margin: 40px auto 0 auto; /* Margem superior e centralização */
+    background: transparent; /* Fundo transparente */
+    padding: 0 20px 40px 20px; /* Preenchimento interno */
+}
+
+/* Título do formulário de contato */
+.contato-titulo {
+    text-align: center; /* Centraliza o título */
+    margin-top: 20px; /* Margem superior */
+    font-weight: bold; /* Negrito no título */
+    font-size: 2rem; /* Tamanho da fonte do título */
+    color: #161616; /* Cor do texto */
+}
+
+.contato-titulo span {
+    color: #161616; /* Cor do texto do span */
+}
+
+/* Botão de WhatsApp */
+.contato-whatsapp {
+    display: flex; /* Exibe os itens como flexbox */
+    justify-content: center; /* Justifica o conteúdo ao centro */
+    margin: 25px 0 10px 0;  /* Margem superior e inferior */
+}
+
+.btn-whatsapp {
+    background: #1dc12b; /* Cor de fundo do botão */
+    color: #161616; /* Cor do texto do botão */
+    border: 2px solid #111; /* Cor da borda do botão */
+    padding: 12px 32px; /* Preenchimento interno do botão */
+    border-radius: 6px; /* Bordas arredondadas */
+    font-size: 1.1rem; /* Tamanho da fonte do botão */
+    font-weight: bold;  /* Negrito no texto do botão */
+    text-decoration: none; /* Remove o sublinhado do texto */
+    transition: background 0.2s, color 0.2s; /* Transição suave para cor de fundo e texto */
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08); /* Sombra do botão */
+    animation: pulse 1.2s infinite; /* Animação de pulsação */
+}
+
+/* Animação de pulsação do botão WhatsApp */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #14ef2840; /* Sombra inicial */
+        transform: scale(1); /* Escala inicial */
+    }
+    70% {
+        box-shadow: 0 0 0 12px #14ef2800; /* Sombra intermediária */
+        transform: scale(1.07); /* Escala intermediária */
+    }
+    100% {
+        box-shadow: 0 0 0 0 #14ef2840; /* Sombra final */
+        transform: scale(1); /* Escala final */
+    }
+}
+
+.btn-whatsapp:hover {
+    background: #11c822; /* Cor de fundo ao passar o mouse */
+    color: #5e5a5a; /* Cor do texto ao passar o mouse */
+}
+
+/* Subtítulo do formulário de contato */
+.contato-subtitulo {
+    text-align: center; /* Centraliza o subtítulo */
+    margin-bottom: 18px; /* Margem inferior */
+    color: #222; /* Cor do texto */
+    font-size: 1.08rem; /* Tamanho da fonte do subtítulo */
+}
+
+/* Linha divisória do formulário */
+.contato-divisor {
+    border: none; /* Remove borda padrão */
+    border-top: 4px solid #b2cbe8; /* Borda superior personalizada */
+    margin-bottom: 24px; /* Margem inferior */
+}
+
+/* Formulário de contato */
+.contato-formulario {
+    display: flex; /* Exibe os itens como flexbox */
+    flex-direction: column; /* Direção da coluna */
+    gap: 16px; /* Espaçamento entre os itens */
+}
+
+/* Campos do formulário */
+.contato-formulario input,
+.contato-formulario textarea {
+    background: #b3d3ef; /* Cor de fundo dos campos */
+    border: 2px solid #616161; /* Cor da borda dos campos */
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 11px 12px; /* Preenchimento interno dos campos */
+    font-size: 1rem; /* Tamanho da fonte */
+    color: #030303; /* Cor do texto */
+    font-family: inherit; /* Fonte herdada do body */
+    transition: border-color 0.2s; /* Transição suave para a cor da borda */
+    outline: none;   /* Remove o contorno padrão ao focar */
+}
+
+/* Efeito ao focar nos campos do formulário */
+.contato-formulario input:focus,
+.contato-formulario textarea:focus {
+    border-color: #000000; /* Cor da borda ao focar */
+}
+
+/* Campo de texto do formulário */
+.contato-formulario textarea {
+    min-height: 100px; /* Altura mínima do campo de texto */
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* Botão de envio do formulário */
+.btn-enviar { 
+    margin-top: 12px; /* Margem superior do botão */
+    background: #4880a8; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none;   /* Remove a borda padrão do botão */
+    border-radius: 20px; /* Bordas arredondadas do botão */
+    padding: 14px 0; /* Preenchimento interno do botão */
+    font-size: 1.2rem; /* Tamanho da fonte do botão */ 
+    font-weight: bold; /* Negrito no texto do botão */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    transition: background 0.2s; /* Transição suave para a cor de fundo */
+    width: 100%; /* Largura total do botão */
+}
+
+.btn-enviar:hover {
+    background: #4173a2; /* Cor de fundo ao passar o mouse */
+}
+
+/* Responsividade para o formulário de contato */
+@media (max-width: 650px) {
+    .contato-container {
+        max-width: 98vw; /* Largura máxima do container */
+        padding: 0 4vw 40px 4vw; /* Preenchimento interno */
+    }
+    .contato-titulo {
+        font-size: 1.3rem; /* Tamanho da fonte do título */
+    }
+    .btn-whatsapp {
+        font-size: 1rem; /* Tamanho da fonte do botão */
+        padding: 10px 20px; /* Preenchimento interno do botão */
+    }
+}
+
+/* Rodapé */
+.rodape {
+    width: 100%; /* Largura total do rodapé */
+    background-color: #002557; /* Cor de fundo do rodapé */
+    display: flex; /* Exibe os itens como flexbox */
+    justify-content: space-between; /* Justifica o conteúdo com espaço entre os itens */
+    align-items: center; /* Alinha os itens ao centro */
+    padding: 20px 40px 10px 40px; /* Preenchimento interno */
+    color: white; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito no texto */
+    border-top: 2px solid #444; /* Borda superior */
+    box-sizing: border-box; /* Inclui bordas e preenchimentos no cálculo de largura e altura */
+    flex-wrap: wrap;    /* Permite quebra de linha em telas menores */
+}
+.paragrafo1,
+.paragrafo2,
+.icones-centro {
+    flex: 1; /* Permite que os itens ocupem o espaço disponível */
+}
+.paragrafo1 {
+    text-align: left; /* Alinha o texto à esquerda */
+}
+.paragrafo2 {
+    text-align: right; /* Alinha o texto à direita */
+}
+.icones-centro {
+    display: flex; /* Exibe os itens como flexbox */
+    justify-content: center;    /* Justifica o conteúdo ao centro */
+    align-items: center; /* Alinha os itens ao centro */
+    gap: 25px; /* Espaçamento entre os itens */
+    font-size: 26px; /* Tamanho da fonte dos ícones */
+}
+.icones-centro a {
+    color: white; /* Cor do texto dos ícones */
+    text-decoration: none; /* Remove sublinhado */
+    transition: color 0.3s; /* Transição suave para a cor */
+}
+.icones-centro a:hover {
+    color: #00bfff; /* Cor ao passar o mouse */
+}
+/* Navegação no final */
+.nav-final {
+    width: 100%; /* Largura total da navegação final */
+    margin-top: 20px; /* Margem superior */
+    text-align: center; /* Centraliza o texto */
+}
+.nav-final ul {
+    list-style: none; /* Remove marcadores da lista */
+    padding: 0; /* Remove preenchimento */
+    margin: 0; /* Remove margem */
+    display: flex; /* Exibe os itens como flexbox */
+    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+    justify-content: center;    /* Justifica o conteúdo ao centro */
+    gap: 20px; /* Espaçamento entre os itens */
+    font-weight: normal; /* Remove negrito da fonte */ 
+}
+.nav-final a {
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 14px; /* Tamanho da fonte */
+    transition: color 0.3s; /* Transição suave para a cor */
+} 
+.nav-final a:hover {
+     color: #00bfff; /* Cor ao passar o mouse */
+}
+/* Responsivo */
+@media (max-width: 768px) {
+    .rodape {
+        flex-direction: column; /* Direção da coluna */
+        text-align: center; /* Centraliza o texto */
+    }
+    .paragrafo1,
+    .paragrafo2,
+    .icones-centro {
+        flex: unset; /* Remove o flex para os itens */
+        width: 100%; /* Largura total */
+        margin: 10px 0; /* Margem superior e inferior */
+        text-align: center; /* Centraliza o texto */
+    }
+    .nav-final ul {
+        flex-direction: column; /* Direção da coluna */
+        gap: 10px; /* Espaçamento entre os itens */
+    }
+}

@@ -1,0 +1,184 @@
+<?php
+session_start();
+if (!isset($_SESSION["admin_logado"])) {
+    header("Location: login-adm.php");
+    exit;
+}
+?>
+
+<?php
+include('../conexao.php');
+
+$id = $_GET['id'];
+$registro = $conexao->query("SELECT * FROM depoimentos WHERE id = $id")->fetch_assoc();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $titulo = $_POST['titulo'];
+  $link = $_POST['link'];
+  $stmt = $conexao->prepare("UPDATE depoimentos SET titulo=?, link=? WHERE id=?");
+  $stmt->bind_param("ssi", $titulo, $link, $id);
+  $stmt->execute();
+  header('Location: depoimentos-lista.php');
+  exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Depoimento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f2f4f7;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="url"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    a.voltar {
+      display: inline-block;
+      background: #6c757d;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    a.voltar:hover {
+      background: #5a6268;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 14px 7px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      }
+      h1 {
+        font-size: 21px;
+        margin-bottom: 16px;
+      }
+      label {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="url"] {
+        font-size: 13px;
+        padding: 8px 7px;
+      }
+      button, a.voltar {
+        font-size: 14px;
+        padding: 11px 5px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        padding: 8px 2px;
+      }
+      h1 {
+        font-size: 17px;
+      }
+      label {
+        font-size: 13px;
+      }
+      input[type="text"],
+      input[type="url"] {
+        font-size: 12px;
+      }
+      button, a.voltar {
+        font-size: 12px;
+        padding: 8px 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Editar Depoimento</h1>
+
+    <form method="post">
+      <label>Título:
+        <input type="text" name="titulo" value="<?= htmlspecialchars($registro['titulo']) ?>" required>
+      </label>
+
+      <label>Link do Vídeo:
+        <input type="url" name="link" value="<?= htmlspecialchars($registro['link']) ?>" required>
+      </label>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <a href="depoimentos-lista.php" class="voltar">← Voltar para a lista</a>
+  </div>
+</body>
+</html>

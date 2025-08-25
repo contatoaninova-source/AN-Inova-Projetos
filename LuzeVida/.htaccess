@@ -1,0 +1,41 @@
+# ============================================================
+# .htaccess de Segurança Básica (versão light)
+# Autor: Antony Silva (ajustado)
+# Criado em: 13/08/2025 - Revisado: 15/08/2025
+# ============================================================
+
+# Proteção contra listagem de diretórios
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Força HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Segurança básica
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Política de referenciador
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissões básicas
+    Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+
+    # HSTS (apenas se HTTPS estiver 100% funcionando)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Redireciona todos os erros para erro.html
+ErrorDocument 400 /erro.html
+ErrorDocument 401 /erro.html
+ErrorDocument 403 /erro.html
+ErrorDocument 404 /erro.html
+ErrorDocument 500 /erro.html
+ErrorDocument 502 /erro.html
+ErrorDocument 503 /erro.html

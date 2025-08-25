@@ -1,0 +1,1345 @@
+/* =========================
+
+   RESET GERAL E BASE
+
+   ========================= */
+
+
+
+/* Resetando margens e preenchimentos padrão de todos os elementos */
+
+* {
+
+    margin: 0; /* Remove margens padrão */
+
+    padding: 0; /* Remove preenchimentos padrão */
+
+    box-sizing: border-box; /* Inclui borda e padding no cálculo do tamanho */
+
+}
+
+
+
+/* Definição do fundo da página e fonte padrão */
+
+body {
+
+    background: linear-gradient(90deg, #ffffff, #89bcff, #357ac2); /* Fundo gradiente lateral */
+
+    font-family: 'Simonetta', cursive; /* Fonte principal */
+
+    text-align: center; /* Centraliza texto (útil para textos soltos) */
+
+    overflow-x: hidden; /* Esconde rolagem lateral */
+
+}
+
+
+
+
+
+/* =========================
+
+   CONTAINERS PRINCIPAIS
+
+   ========================= */
+
+
+
+/* Container principal para centralizar elementos */
+
+.principal-container {
+
+    display: flex; /* Layout flexível */
+
+    flex-direction: column; /* Elementos em coluna */
+
+    align-items: center; /* Centraliza horizontalmente */
+
+    justify-content: center; /* Centraliza verticalmente */
+
+    padding: 0; /* Sem padding */
+
+}
+
+
+
+/* Container do logo */
+
+.logo-container img {
+
+    max-width: 180px; /* Limita largura */
+
+    height: auto; /* Altura automática */
+
+}
+
+
+
+/* Responsividade: corpo em telas muito pequenas */
+
+@media screen and (max-width: 375px) {
+
+    .body-container {
+
+        width: 100%; /* Largura total */
+
+        padding: 0; /* Sem padding */
+
+        min-width: 100%; /* Largura mínima */
+
+    }
+
+}
+
+
+
+/* =========================
+
+   MENU DE NAVEGAÇÃO
+
+   ========================= */
+
+
+
+/* Container do menu de navegação */
+
+.navegacao-container {
+
+    background-color: black; /* Fundo preto */
+
+    padding: 10px 0; /* Espaçamento interno */
+
+    width: 100vw; /* Largura total da viewport */
+
+    border-radius: 0; /* Sem borda arredondada */
+
+    margin-top: 10px; /* Espaço acima */
+
+}
+
+
+
+/* Ícone do menu hambúrguer (aparece só no mobile) */
+
+.menu-toggle {
+
+    display: none; /* Esconde por padrão */
+
+    font-size: 32px; /* Tamanho do ícone */
+
+    cursor: pointer; /* Cursor de ponteiro */
+
+    color: #e4e4e4; /* Cor do ícone */
+
+    user-select: none; /* Impede seleção do texto */
+
+}
+
+
+
+/* Lista principal do menu */
+
+.navegacao-lista {
+
+    list-style: none; /* Remove marcadores */
+
+    display: flex; /* Flexbox */
+
+    justify-content: center; /* Centraliza horizontalmente */
+
+    gap: 15px; /* Espaço entre itens */
+
+}
+
+.navegacao-item {
+
+    display: inline; /* Exibe em linha */
+
+}
+
+.navegacao-link {
+
+    font-family: "Simonetta", serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    text-decoration: none; /* Sem sublinhado */
+
+    color: rgb(255, 255, 255); /* Cor do texto */
+
+    font-size: 18px; /* Tamanho da fonte */
+
+    padding: 8px 12px; /* Espaçamento interno */
+
+    position: relative; /* Para o efeito do ::after */
+
+}
+
+.navegacao-lista.ativa .navegacao-link {
+
+    color: #000000; /* Cor do texto quando ativo */
+
+}
+
+.navegacao-link:hover {
+
+    background-color: transparent; /* Sem fundo ao passar o mouse */
+
+}
+
+.navegacao-link::after {
+
+    content: ""; /* Cria pseudo-elemento */
+
+    display: block; /* Exibe como bloco */
+
+    width: 0; /* Largura inicial */
+
+    height: 3px; /* Altura do efeito */
+
+    background-color: #357ac2; /* Cor do efeito */
+
+    transition: width 0.3s ease; /* Transição suave */
+
+    position: absolute; /* Posição absoluta */
+
+    bottom: -5px; /* Distância do fundo */
+
+    left: 50%; /* Centraliza horizontalmente */
+
+    transform: translateX(-50%); /* Centraliza */
+
+}
+
+.navegacao-link:hover::after {
+
+    width: 100%; /* Efeito de sublinhado ao passar o mouse */
+
+}
+
+
+
+/* Menu responsivo para telas menores */
+
+@media screen and (max-width: 768px) {
+
+    .menu-toggle {
+
+        display: block; /* Exibe o ícone */
+
+        margin-right: 80%; /* Margem direita */
+
+        font-size: 32px; /* Tamanho do ícone */
+
+        cursor: pointer; /* Cursor de ponteiro */
+
+        color: #e4e4e4; /* Cor do ícone */
+
+        user-select: none; /* Impede seleção */
+
+        z-index: 20; /* Sobrepõe outros elementos */
+
+        position: relative; /* Posição relativa */
+
+    }
+
+    .navegacao-lista {
+
+        display: flex; /* Flexbox */
+
+        flex-direction: column; /* Coluna */
+
+        gap: 15px; /* Espaço entre itens */
+
+        background-color: #f0f0f0; /* Fundo claro */
+
+        position: fixed; /* Fixo na tela */
+
+        top: 50%; /* Centraliza verticalmente */
+
+        left: 50%; /* Centraliza horizontalmente */
+
+        transform: translate(-50%, -50%) scale(0.95); /* Centraliza e escala */
+
+        z-index: 9; /* Sobrepõe outros elementos */
+
+        padding: 20px 30px; /* Espaçamento interno */
+
+        border-radius: 12px; /* Bordas arredondadas */
+
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra */
+
+        visibility: hidden; /* Esconde o menu */
+
+        opacity: 0; /* Transparente */
+
+        pointer-events: none; /* Não interage */
+
+        transition: opacity 0.3s, transform 0.3s; /* Transição suave */
+
+        min-width: 200px; /* Largura mínima */
+
+        align-items: center; /* Centraliza itens */
+
+    }
+
+    .navegacao-lista.ativa {
+
+        visibility: visible; /* Mostra o menu */
+
+        opacity: 1; /* Opacidade total */
+
+        pointer-events: auto; /* Permite interação */
+
+        transform: translate(-50%, -50%) scale(1); /* Escala normal */
+
+    }
+
+}
+
+
+
+/* =========================
+
+   SEÇÃO DE INTRODUÇÃO
+
+   ========================= */
+
+
+
+.introducao-container {
+
+    width: 100%; /* Largura total */
+
+    text-align: center; /* Centraliza texto */
+
+}
+
+.introducao-titulo {
+
+    font-size: 40px; /* Tamanho do título */
+
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 1px 0 #000000, 2px 2px 0 rgba(63,133,198,0.10); /* Sombra */
+
+    font-family: 'Arial', sans-serif; /* Fonte */
+
+    color: #1d5b95; /* Cor */
+
+}
+
+.introducao-texto {
+
+    font-family: 'Simonetta', cursive; /* Fonte */
+
+    font-size: 18px; /* Tamanho */
+
+    color: black; /* Cor */
+
+    margin-top: 10px; /* Espaço acima */
+
+}
+
+
+
+/* =========================
+
+   TÍTULO PRINCIPAL
+
+   ========================= */
+
+
+
+.titulo {
+
+    text-align: center; /* Centraliza */
+
+    font-size: 50px; /* Tamanho */
+
+    color: #3f85c6; /* Cor */
+
+    font-family: "Caprasimo", serif; /* Fonte */
+
+    -webkit-text-stroke: 0.2px #000000; /* Contorno */
+
+    margin-top: 20px; /* Espaço acima */
+
+    font-weight: bold; /* Negrito */
+
+}
+
+
+
+/* =========================
+
+   IMAGEM DE DESTAQUE E CONTEÚDO
+
+   ========================= */
+
+
+
+.imagem-maior {
+
+    display: flex; /* Flexbox */
+
+    justify-content: center; /* Centraliza horizontalmente */
+
+    align-items: flex-start; /* Alinha ao topo */
+
+    flex-wrap: wrap; /* Permite quebra de linha */
+
+    gap: 100px; /* Espaço entre itens */
+
+    padding: 50px; /* Espaçamento interno */
+
+    text-align: center; /* Centraliza texto */
+
+}
+
+.imagem-maior img {
+
+    max-width: 100%; /* Largura máxima */
+
+    width: 680px; /* Largura fixa */
+
+    height: auto; /* Altura automática */
+
+}
+
+.quadrado-azul {
+
+    max-width: 400px; /* Largura máxima */
+
+    width: 100%; /* Largura total */
+
+    height: 400px; /* Altura fixa */
+
+    background-color: #357ac2; /* Fundo azul */
+
+    padding: 30px; /* Espaçamento interno */
+
+    text-align: center; /* Centraliza texto */
+
+    color: white; /* Cor do texto */
+
+    font-family: "Yeseva One", serif; /* Fonte */
+
+    font-size: 1.4em; /* Tamanho da fonte */
+
+}
+
+
+
+/* =========================
+
+   BLOCO DE TEXTO E FORMAS
+
+   ========================= */
+
+
+
+.texto-formas {
+
+    margin-top: 10px; /* Espaço acima */
+
+    display: flex; /* Flexbox */
+
+    align-items: center; /* Centraliza verticalmente */
+
+    justify-content: center; /* Centraliza horizontalmente */
+
+    font-size: 30px; /* Tamanho da fonte */
+
+}
+
+
+
+.container {
+
+    display: flex; /* Flexbox */
+
+    align-items: flex-start; /* Alinha ao topo */
+
+    justify-content: space-between; /* Espaço entre itens */
+
+    background-color: transparent; /* Fundo transparente */
+
+    padding: 0px; /* Sem padding */
+
+    color: rgb(0, 0, 0); /* Cor do texto */
+
+    width: 75%; /* Largura */
+
+    margin: 20px auto; /* Centraliza e espaça */
+
+    position: relative; /* Posição relativa */
+
+    gap: 120px; /* Espaço entre itens */
+
+    flex-wrap: nowrap; /* Não quebra linha */
+
+}
+
+
+
+.texto p {
+
+    margin-bottom: 50px; /* Espaço abaixo */
+
+    flex: 1; /* Ocupa espaço disponível */
+
+    text-align: left; /* Alinha à esquerda */
+
+    word-wrap: break-word; /* Quebra palavras longas */
+
+    line-height: 1.4; /* Espaçamento entre linhas */
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    font-style: normal; /* Estilo normal */
+
+    font-size: 18px; /* Tamanho da fonte */
+
+    margin-top: 20px; /* Espaço acima */
+
+    max-width: 800px; /* Largura máxima */
+
+    text-align: left; /* Justifica texto */
+
+}
+
+
+
+@media (max-width: 768px) {
+
+    .container {
+
+        width: 100%; /* Largura total */
+
+        padding: 0 15px; /* Espaçamento lateral */
+
+        margin: 20px auto; /* Centraliza e espaça */
+
+    }
+
+}
+
+.texto h2,
+
+.texto-2 h2 {
+
+    font-family: "Yeseva One", serif; /* Fonte */
+
+    font-size: 30px; /* Tamanho */
+
+    color: #000000; /* Cor */
+
+    margin-bottom: 20px; /* Espaço abaixo */
+
+    text-align: left; /* Alinha à esquerda */
+
+    font-weight: bold; /* Negrito */
+
+}
+
+
+
+ 
+
+.texto-2 p {
+
+    flex: 1; /* Ocupa espaço disponível */
+
+    word-wrap: break-word; /* Quebra palavras longas */
+
+    line-height: 1.4; /* Espaçamento entre linhas */
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    font-style: normal; /* Estilo normal */
+
+    font-size: 18px; /* Tamanho da fonte */
+
+    width: 100%; /* Largura total */
+
+    margin: 0 auto; /* Centraliza */
+
+    text-align: justify; /* Justifica texto */
+
+    margin-top: 20px; /* Espaço acima */
+
+    margin-bottom: 50px; /* Espaço abaixo */
+
+}
+
+
+
+
+
+/* Container de texto extra */
+
+.container-texto2 {
+
+    width: 75%; /* Largura */
+
+    margin: 20px auto; /* Centraliza e espaça */
+
+    text-align: justify; /* Justifica texto */
+
+    margin-top: -50px; /* Espaço acima negativo */
+
+    margin-bottom: 50px; /* Espaço abaixo */
+
+    max-width: 100%; /* Largura máxima */
+
+}
+
+@media (max-width: 768px) {
+
+    .container-texto2 {
+
+        width: 100%; /* Largura total */
+
+        padding: 0 15px; /* Espaçamento lateral */
+
+        margin: 20px auto; /* Centraliza e espaça */
+
+    }
+
+}
+
+
+
+/* =========================
+
+   FORMAS E CARDS EXTRAS
+
+   ========================= */
+
+
+
+.formas-container {
+
+    display: flex; /* Flexbox */
+
+    flex-direction: column; /* Coluna */
+
+    align-items: center; /* Centraliza horizontalmente */
+
+    justify-content: center; /* Centraliza verticalmente */
+
+    gap: 40px; /* Espaço entre itens */
+
+    padding: 20px; /* Espaçamento interno */
+
+    height: auto; /* Altura automática */
+
+}
+
+.forma {
+
+    display: flex; /* Flexbox */
+
+    flex-direction: column; /* Coluna */
+
+    align-items: center; /* Centraliza horizontalmente */
+
+    justify-content: center; /* Centraliza verticalmente */
+
+    width: 90%; /* Largura */
+
+    max-width: 320px; /* Largura máxima */
+
+    background-color: #3f85c6; /* Fundo azul */
+
+    border-radius: 8px; /* Bordas arredondadas */
+
+    margin: 0 auto; /* Centraliza */
+
+}
+
+.retangulo {
+
+    background-color: #3f85c6; /* Fundo azul */
+
+    width: 100%; /* Largura total */
+
+    max-width: 280px; /* Largura máxima */
+
+    height: auto; /* Altura automática */
+
+    padding: 10px; /* Espaçamento interno */
+
+    display: flex; /* Flexbox */
+
+    flex-direction: column; /* Coluna */
+
+    align-items: center; /* Centraliza horizontalmente */
+
+    position: relative; /* Posição relativa */
+
+}
+
+.retangulocinza {
+
+    background-color: #e4e4e4; /* Fundo cinza */
+
+    width: 100%; /* Largura total */
+
+    max-width: 265px; /* Largura máxima */
+
+    padding: 10px; /* Espaçamento interno */
+
+    display: flex; /* Flexbox */
+
+    flex-direction: column; /* Coluna */
+
+    align-items: center; /* Centraliza horizontalmente */
+
+    justify-content: center; /* Centraliza verticalmente */
+
+}
+
+.retangulocinza p {
+
+    font-family: "Open Sans", sans-serif; /* Fonte */
+
+    color:#3784cb ; /* Cor do texto */
+
+    font-size: 25px; /* Tamanho da fonte */
+
+    font-weight: bold; /* Negrito */
+
+    text-align: center; /* Centraliza texto */
+
+    margin-top: 35px; /* Espaço acima */
+
+}
+
+.imagem-principal {
+
+    width: 100%; /* Largura total */
+
+    max-width: 265px; /* Largura máxima */
+
+    height: auto; /* Altura automática */
+
+    margin-top: 5px; /* Espaço acima */
+
+}
+
+.imagem-redonda {
+
+    width: 70px; /* Largura */
+
+    height: 70px; /* Altura */
+
+    border-radius: 50%; /* Deixa redonda */
+
+    object-fit: cover; /* Cobre o espaço mantendo proporção */
+
+    position: absolute; /* Posição absoluta */
+
+    top: 60%; /* Posiciona verticalmente */
+
+    left: 50%; /* Centraliza horizontalmente */
+
+    transform: translate(-50%, -50%); /* Centraliza */
+
+    border: 0.1px solid black; /* Borda fina preta */
+
+}
+
+.botao-unidades {
+
+    font-size: 15px; /* Tamanho da fonte */
+
+    background-color: #3f85c6; /* Fundo azul */
+
+    color: white; /* Cor do texto */
+
+    border: none; /* Sem borda */
+
+    border-radius: 15px; /* Bordas arredondadas */
+
+    width: 100%; /* Largura total */
+
+    max-width: 230px; /* Largura máxima */
+
+    height: 50px; /* Altura */
+
+    font-weight: bold; /* Negrito */
+
+    margin-top: 10px; /* Espaço acima */
+
+    cursor: pointer; /* Cursor de ponteiro */
+
+}
+
+.botao-unidades:hover {
+
+    background-color: #ffffff; /* Fundo branco ao passar o mouse */
+
+    color: black; /* Texto preto ao passar o mouse */
+
+}
+
+
+
+/* =========================
+
+   RODAPÉ E NAVEGAÇÃO FINAL
+
+   ========================= */
+
+
+
+/* Rodapé principal */
+
+.rodape {
+
+    width: 100%; /* Largura total */
+
+    background-color: #002557; /* Fundo azul escuro */
+
+    display: flex; /* Flexbox */
+
+    justify-content: space-between; /* Espaço entre colunas */
+
+    align-items: center; /* Centraliza verticalmente */
+
+    padding: 20px 40px; /* Espaçamento interno */
+
+    color: white; /* Cor do texto */
+
+    font-size: 16px; /* Tamanho da fonte */
+
+    font-weight: bold; /* Negrito */
+
+    border-top: 2px solid #444; /* Linha superior */
+
+    box-sizing: border-box; /* Inclui borda e padding no cálculo */
+
+    flex-wrap: wrap; /* Permite quebra de linha */
+
+}
+
+.paragrafo1, .paragrafo2, .icones-centro {
+
+    flex: 1; /* Cada coluna ocupa 1 parte */
+
+}
+
+.paragrafo1 {
+
+    text-align: left; /* Alinha à esquerda */
+
+}
+
+.paragrafo2 {
+
+    text-align: right; /* Alinha à direita */
+
+}
+
+.icones-centro {
+
+    display: flex; /* Flexbox */
+
+    justify-content: center; /* Centraliza horizontalmente */
+
+    align-items: center; /* Centraliza verticalmente */
+
+    gap: 25px; /* Espaço entre ícones */
+
+    font-size: 26px; /* Tamanho dos ícones */
+
+}
+
+.icones-centro a {
+
+    color: white; /* Cor dos ícones */
+
+    text-decoration: none; /* Sem sublinhado */
+
+    transition: color 0.3s; /* Transição suave */
+
+}
+
+.icones-centro a:hover {
+
+    color: #00bfff; /* Cor ao passar o mouse */
+
+}
+
+
+
+/* Navegação extra no final do footer */
+
+.nav-final {
+
+    width: 100%; /* Largura total */
+
+    margin-top: 20px; /* Espaço acima */
+
+    text-align: center; /* Centraliza texto */
+
+}
+
+.nav-final ul {
+
+    list-style: none; /* Remove marcadores */
+
+    padding: 0; /* Sem padding */
+
+    margin: 0; /* Sem margem */
+
+    display: flex; /* Flexbox */
+
+    flex-wrap: wrap; /* Permite quebra de linha */
+
+    justify-content: center; /* Centraliza */
+
+    gap: 20px; /* Espaço entre itens */
+
+    font-weight: normal; /* Fonte normal */
+
+}
+
+.nav-final a {
+
+    color: white; /* Cor dos links */
+
+    text-decoration: none; /* Sem sublinhado */
+
+    font-size: 14px; /* Tamanho da fonte */
+
+    transition: color 0.3s; /* Transição suave */
+
+}
+
+.nav-final a:hover {
+
+    color: #00bfff; /* Cor ao passar o mouse */
+
+}
+
+
+
+/* =========================
+
+   MEDIA QUERIES PARA RESPONSIVIDADE
+
+   ========================= */
+
+
+
+/* Telas até 768px: empilha tudo e ajusta tamanhos */
+
+@media screen and (max-width: 768px) {
+
+    .container {
+
+        flex-direction: column; /* Empilha colunas */
+
+        align-items: center; /* Centraliza */
+
+        width: 100%; /* Largura total */
+
+        gap: 20px; /* Espaço entre itens */
+
+    }
+
+    .imagem-maior {
+
+        flex-direction: column; /* Empilha colunas */
+
+        gap: 30px; /* Espaço entre itens */
+
+        padding: 10px; /* Espaçamento interno */
+
+    }
+
+    .quadrado-azul {
+
+        font-size: 1em; /* Tamanho menor */
+
+        padding: 15px; /* Espaço interno menor */
+
+    }
+
+    .logo-container img {
+
+        max-width: 180px; /* Largura máxima */
+
+    }
+
+    .titulo {
+
+        font-size: 28px; /* Tamanho menor */
+
+        text-align: center; /* Centraliza */
+
+        margin: 10px; /* Espaço */
+
+    }
+
+    .texto p {
+
+        font-size: 16px; /* Tamanho menor */
+
+        text-align: left; /* Alinha à esquerda */
+
+        max-width: 90%; /* Largura máxima */
+
+    }
+
+    .forma, .retangulo, .retangulocinza {
+
+        width: 100%; /* Largura total */
+
+        max-width: 320px; /* Largura máxima */
+
+        margin: 0 auto; /* Centraliza */
+
+    }
+
+    .input, .botao-forma {
+
+        width: 90%; /* Largura */
+
+        font-size: 16px; /* Tamanho da fonte */
+
+    }
+
+    .formas-container {
+
+        align-items: center; /* Centraliza */
+
+        justify-content: center; /* Centraliza */
+
+    }
+
+    .imagem-principal {
+
+        width: 90%; /* Largura */
+
+        height: auto; /* Altura automática */
+
+    }
+
+    .imagem-redonda {
+
+        top: 60%; /* Posição */
+
+        width: 75px; /* Largura */
+
+        height: 75px; /* Altura */
+
+    }
+
+    .botao-unidades {
+
+        font-size: 14px; /* Tamanho menor */
+
+        width: 100%; /* Largura total */
+
+        max-width: 230px; /* Largura máxima */
+
+    }
+
+
+
+
+
+/* =========================
+
+   Rodapé e navegação final responsivos
+
+   ========================= */
+
+
+
+
+
+    /* Rodapé e navegação final responsivos */
+
+    .rodape {
+
+        flex-direction: column; /* Empilha colunas */
+
+        text-align: center; /* Centraliza texto */
+
+    }
+
+    .paragrafo1, .paragrafo2, .icones-centro {
+
+        flex: unset; /* Remove flex */
+
+        width: 100%; /* Largura total */
+
+        margin: 10px 0; /* Espaço vertical */
+
+        text-align: center; /* Centraliza texto */
+
+    }
+
+    .nav-final ul {
+
+        flex-direction: column; /* Empilha links */
+
+        gap: 10px; /* Espaço menor */
+
+    }
+
+}
+
+
+
+/* Telas até 1200px: empilha os blocos e reduz tamanhos */
+
+@media screen and (max-width: 1200px) {
+
+    .container {
+
+        flex-direction: column; /* Empilha colunas */
+
+        width: 100%; /* Largura total */
+
+        gap: 20px; /* Espaço entre itens */
+
+        align-items: center; /* Centraliza */
+
+    }
+
+    .imagem-maior {
+
+        flex-direction: column; /* Empilha colunas */
+
+        align-items: center; /* Centraliza */
+
+        gap: 30px; /* Espaço entre itens */
+
+        padding: 10px; /* Espaçamento interno */
+
+    }
+
+    .quadrado-azul {
+
+        font-size: 1em; /* Tamanho menor */
+
+        padding: 15px; /* Espaço interno menor */
+
+    }
+
+    .titulo {
+
+        font-size: 28px; /* Tamanho menor */
+
+        text-align: center; /* Centraliza */
+
+        margin: 10px; /* Espaço */
+
+    }
+
+    .texto p {
+
+        font-size: 18px; /* Tamanho menor */
+
+        text-align: left; /* Alinha à esquerda */
+
+        max-width: 100%; /* Largura máxima */
+
+        flex: 1; /* Ocupa espaço disponível */
+
+    }
+
+    .forma, .retangulo, .retangulocinza {
+
+        width: 100%; /* Largura total */
+
+        max-width: 320px; /* Largura máxima */
+
+        margin: 0 auto; /* Centraliza */
+
+    }
+
+    .input, .botao-forma {
+
+        width: 90%; /* Largura */
+
+        font-size: 16px; /* Tamanho da fonte */
+
+    }
+
+    .formas-container {
+
+        align-items: center; /* Centraliza */
+
+        justify-content: center; /* Centraliza */
+
+    }
+
+    .imagem-principal {
+
+        width: 90%; /* Largura */
+
+        height: auto; /* Altura automática */
+
+    }
+
+    .imagem-redonda {
+
+        top: 60%; /* Posição */
+
+        width: 75px; /* Largura */
+
+        height: 75px; /* Altura */
+
+    }
+
+    .botao-unidades {
+
+        font-size: 14px; /* Tamanho menor */
+
+        width: 100%; /* Largura total */
+
+        max-width: 230px; /* Largura máxima */
+
+    }
+
+    .navegacao-lista.ativa {
+
+        display: flex; /* Exibe o menu */
+
+    }
+
+}
+
+
+
+/* =========================
+
+   UTILITÁRIOS DE TIPOGRAFIA
+
+   ========================= */
+
+
+
+/* Diversas variações de fontes para uso nos elementos */
+
+.simonetta-regular {
+
+    font-family: "Simonetta", serif;  /* Nome da fonte */
+
+    font-weight: 400; /* Peso da fonte */
+
+    font-style: normal; /* Estilo da fonte */
+
+}
+
+.simonetta-black {
+
+    font-family: "Simonetta", serif; /* Nome da fonte */
+
+    font-weight: 900; /* Peso da fonte */
+
+    font-style: normal; /* Estilo da fonte */
+
+}
+
+.simonetta-regular-italic {
+
+    font-family: "Simonetta", serif; /* Nome da fonte */
+
+    font-weight: 400; /* Peso da fonte */
+
+    font-style: italic; /* Estilo da fonte */
+
+} 
+
+.simonetta-black-italic {
+
+    font-family: "Simonetta", serif; /* Nome da fonte */
+
+    font-weight: 900; /* Peso da fonte */
+
+    font-style: italic; /* Estilo da fonte */
+
+}
+
+.open-sans-uniquifier {
+
+    font-family: "Open Sans", sans-serif; /* Nome da fonte */
+
+    font-optical-sizing: auto; /* Ajusta automaticamente o tamanho da fonte */
+
+    font-weight: weight; /* Peso da fonte */
+
+    font-style: normal; /* Estilo da fonte */
+
+    font-variation-settings: "wdth" 100; /* Configuração de variação da fonte */
+
+}
+
+.pt-sans-regular {
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    font-style: normal; /* Estilo normal */
+
+}
+
+.pt-sans-bold {
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 700; /* Peso negrito */
+
+    font-style: normal; /* Estilo normal */
+
+}
+
+.pt-sans-regular-italic {
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    font-style: italic; /* Itálico */
+
+}
+
+.pt-sans-bold-italic {
+
+    font-family: "PT Sans", sans-serif; /* Fonte */
+
+    font-weight: 700; /* Peso negrito */
+
+    font-style: italic; /* Itálico */
+
+}
+
+.caprasimo-regular {
+
+    font-family: "Caprasimo", serif; /* Fonte */
+
+    font-weight: 400; /* Peso normal */
+
+    font-style: normal; /* Estilo normal */
+
+}
+
+
+
+
+
+
+
+/* Fim do arquivo CSS comentado e organizado */
