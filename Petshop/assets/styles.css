@@ -1,0 +1,15 @@
+/* Estilos extras para Amigo Fiel PetShop (além do Tailwind) */
+/* Fonte base Nunito */
+body { font-family: 'Nunito', sans-serif; }
+/* Fundo gradiente para o hero */
+.gradient-bg { background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%); }
+/* Efeito hover nos cards */
+.card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+/* Animação para o contador do carrinho */
+.cart-count { animation: bounce 0.5s ease-in-out; }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
