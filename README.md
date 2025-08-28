@@ -26,7 +26,7 @@
 
 ## 📂 Portfólio
 
-🚧 (https://aninovasites.xo.je/)  
+🚧 https://aninovasites.xo.je/  
 
 ---
 
