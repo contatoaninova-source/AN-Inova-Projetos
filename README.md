@@ -36,7 +36,7 @@
 - 📱 **WhatsApp:** [Clique aqui](https://wa.me/5511968111733)  
 - 📸 **Instagram:** [aninova_sites](https://www.instagram.com/aninova_sites/#)  
 - 💼 **LinkedIn:** [Antony Nelson da Silva](https://www.linkedin.com/in/antony-nelson-da-silva-4b8a56315)  
-- 🐙 **GitHub:** [Seu Perfil](https://github.com/contatoaninova-source)  
+- 🐙 **GitHub:** [Acesse o Perfil](https://github.com/contatoaninova-source)  
 
 ---
 
