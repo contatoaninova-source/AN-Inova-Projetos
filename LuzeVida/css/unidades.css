@@ -1,0 +1,403 @@
+/* Resetando margens e preenchimentos padrão de todos os elementos */
+* {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove preenchimentos padrão */
+    box-sizing: border-box; /* Inclui borda e padding no cálculo do tamanho */
+}
+
+/* Definição do fundo da página com gradiente e fonte padrão */
+body {
+    background: linear-gradient(90deg, #ffffff, #89bcff, #357ac2); /* Fundo com gradiente */
+    font-family: 'Simonetta', cursive; /* Fonte principal */
+    text-align: center; /* Centraliza o texto */
+    overflow-x: hidden; /* Esconde rolagem horizontal */
+}
+
+/* Responsividade para telas muito pequenas */
+@media screen and (max-width: 375px) {
+    .body-container {
+        width: 100%; /* Ocupa toda a largura */
+        padding: 0; /* Remove padding */
+        min-width: 100%; /* Garante largura mínima */
+    }
+}
+
+/* Container principal para centralizar os elementos */
+.principal-container {
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Coloca elementos em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    padding: 0; /* Sem padding */
+}
+
+/* Estilização do logotipo */
+.logo-container img {
+    max-width: 180px; /* Largura máxima da imagem */
+    height: auto; /* Altura automática */
+}
+
+/* Estilização do menu de navegação */
+.navegacao-container {
+    background-color: black; /* Fundo preto */
+    padding: 10px 0; /* Espaçamento interno */
+    width: 100vw; /* Largura total da viewport */
+    border-radius: 0; /* Sem borda arredondada */
+    margin-top: 10px; /* Espaço acima */
+}
+
+/* Ícone do menu (hambúrguer) */
+.menu-toggle {
+    display: none; /* Esconde por padrão (mostra só em mobile) */
+    font-size: 32px; /* Tamanho do ícone */
+    cursor: pointer; /* Cursor de ponteiro */
+    color: #e4e4e4; /* Cor do ícone */
+    user-select: none; /* Impede seleção do texto */
+}
+
+/* Responsividade para o menu e navegação */
+@media screen and (max-width: 768px) {
+     .menu-toggle {
+        display: block; /* Exibe o ícone em telas pequenas */
+        margin-right: 80%; /* Margem direita para posicionamento */
+        word-wrap: none; /* Impede quebra de linha */
+        font-size: 32px; /* Tamanho da fonte do ícone */
+        cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+        color: #e4e4e4; /* Cor do texto */
+        user-select: none; /* Impede a seleção do texto */
+        z-index: 20; /* Z-index para posicionamento */
+        position: relative; /* Posicionamento relativo */
+    }
+    .navegacao-lista {
+        display: flex; /* Exibe a lista de navegação como flexbox */
+        flex-direction: column; /* Direção da coluna */
+        gap: 15px; /* Espaçamento entre os itens */
+        background-color: #f0f0f0; /* Cor de fundo */
+        position: fixed; /* Posicionamento fixo */
+        top: 50%; /* Posicionamento vertical */
+        left: 50%; /* Posicionamento horizontal */
+        transform: translate(-50%, -50%) scale(0.95); /* Centraliza e escala */
+        z-index: 9; /* Z-index para posicionamento */
+        padding: 20px 30px; /* Preenchimento */
+        border-radius: 12px; /* Bordas arredondadas */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra */
+        visibility: hidden; /* Esconde o menu */
+        opacity: 0; /* Transparente */
+        pointer-events: none; /* Não interage */
+        transition: opacity 0.3s, transform 0.3s; /* Transição suave */
+        min-width: 200px; /* Largura mínima */
+        align-items: center; /* Centraliza itens */
+    }
+    .navegacao-lista.ativa {
+        visibility: visible; /* Mostra o menu */
+        opacity: 1; /* Opacidade total */
+        pointer-events: auto; /* Permite interação */
+        transform: translate(-50%, -50%) scale(1); /* Escala normal */
+    }
+}
+
+/* Estilo da lista de navegação */
+.navegacao-lista {
+    list-style: none; /* Remove marcadores */
+    display: flex; /* Exibe como flex */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 15px; /* Espaçamento entre itens */
+}
+.navegacao-item {
+    display: inline; /* Exibe em linha */
+}
+.navegacao-link {
+    font-family: "Simonetta", serif; /* Fonte personalizada */
+    font-weight: 400; /* Peso normal */
+    text-decoration: none; /* Sem sublinhado */
+    color: rgb(255, 255, 255); /* Cor do texto */
+    font-size: 18px; /* Tamanho da fonte */
+    padding: 8px 12px; /* Espaçamento interno */
+    position: relative; /* Para o efeito do ::after */
+}
+.navegacao-lista.ativa .navegacao-link {
+    color: #000000; /* Cor do texto quando o menu está ativo */
+}
+.navegacao-link:hover {
+    background-color: transparent; /* Sem fundo ao passar o mouse */
+}
+.navegacao-link::after {
+    content: ""; /* Cria um pseudo-elemento */
+    display: block; /* Exibe como bloco */
+    width: 0; /* Largura inicial */
+    height: 3px; /* Altura do efeito */
+    background-color: #357ac2; /* Cor do efeito */
+    transition: width 0.3s ease; /* Transição suave */
+    position: absolute; /* Posição absoluta */
+    bottom: -5px; /* Distância do fundo */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Centraliza */
+}
+.navegacao-link:hover::after {
+    width: 100%; /* Efeito de sublinhado ao passar o mouse */
+}
+
+/* Seção de introdução */
+.introducao-container {
+    width: 100%; /* Ocupa toda a largura */
+    text-align: center; /* Centraliza o texto */
+}
+.introducao-titulo {
+    font-size: 40px; /* Tamanho do título */
+    text-shadow:
+      0 2px 8px rgba(0,0,0,0.18),   /* sombra principal suave */
+      0 1px 0 #000000,                  /* brilho sutil em cima */
+      2px 2px 0 rgba(63,133,198,0.10); /* leve sombra azul */
+    font-family: 'Arial', sans-serif; /* Fonte do título */
+    color: #1d5b95; /* Cor do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+.introducao-texto {
+    font-family: 'Simonetta', cursive; /* Fonte do texto */
+    font-size: 18px; /* Tamanho da fonte */
+    color: black; /* Cor do texto */
+    margin-top: 10px; /* Espaço acima */
+}
+@media screen and (max-width:375px) {
+    .introducao-container {
+        padding: 40px 40px; /* Espaçamento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Título menor */
+    }
+    .introducao-texto {
+        font-size: 16px; /* Texto menor */
+    }
+}
+@media screen and (max-width: 1024px) {
+    .introducao-container {
+        padding: 40px 40px; /* Espaçamento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Título menor */
+    }
+    .introducao-texto {
+        font-size: 16px; /* Texto menor */
+    }
+}
+@media screen and (max-width: 768px) {
+    .introducao-container {
+        padding: 40px 40px; /* Espaçamento interno */
+    }
+    .introducao-titulo {
+        font-size: 32px; /* Tamanho do título */
+    }
+    .introducao-texto {
+        font-size: 16px; /* Tamanho do texto */
+    }
+}
+@media screen and (max-width: 480px) {
+    .introducao-container {
+        padding: 30px 10px; /* Espaçamento interno */
+    }
+    .introducao-titulo {
+        font-size: 28px; /* Tamanho do título */
+    }
+    .introducao-texto {
+        font-size: 14px; /* Tamanho do texto */
+    }
+}
+
+/* UNIDADES - Centralizado, responsivo e animado */
+.unidades-container h1 {
+    text-align: center; /* Centraliza o título */
+    font-size: 2.2rem; /* Tamanho do título */
+    margin-bottom: 32px; /* Espaço abaixo */
+    font-weight: bold; /* Negrito */
+    color: #1a2733; /* Cor do texto */
+    letter-spacing: 1px; /* Espaçamento entre letras */
+}
+
+.unidades-grid {
+    display: grid; /* Usa grid para layout */
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 20px; /* Espaço entre itens */
+    margin-bottom: 24px; /* Espaço abaixo */
+    justify-items: center; /* Centraliza itens horizontalmente */
+    align-items: start; /* Alinha itens ao topo */
+    width: 100%; /* Largura total */
+    max-width: 100vw; /* Largura máxima igual à viewport */
+    box-sizing: border-box; /* Inclui borda e padding no cálculo */
+         
+
+}
+
+.unidade-link {
+    display: flex; /* Flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    width: 100%; /* Largura total */
+    text-decoration: none; /* Remove sublinhado */
+    color: inherit; /* Herda cor do texto */
+}
+
+.unidade-box {
+    background: #b2d2f2; /* Fundo azul claro */
+    border: 2px solid #1a2733; /* Borda azul escuro */
+    border-radius: 16px; /* Bordas arredondadas */
+    width: 620px; /* Largura fixa */
+    max-width: 95vw; /* Largura máxima responsiva */
+    min-height: 380px; /* Altura mínima */
+    box-sizing: border-box; /* Inclui borda e padding no cálculo */
+    padding: 10px 20px 18px 20px; /* Espaçamento interno */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Coloca elementos em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    margin: 0; /* Sem margem */
+    transition: transform 0.25s cubic-bezier(.39,.58,.57,1.43), box-shadow 0.25s; /* Animação suave */
+}
+
+.unidade-link:hover .unidade-box,
+.unidade-link:focus .unidade-box {
+    transform: scale(1.04); /* Aumenta levemente ao passar o mouse */
+    box-shadow: 0 6px 24px rgba(30, 80, 120, 0.19); /* Sombra */
+    z-index: 2; /* Sobrepõe outros elementos */
+    cursor: pointer; /* Cursor de ponteiro */
+    
+}
+
+.unidade-box img {
+    width: 100%; /* Largura total */
+    height: 240px; /* Altura fixa */
+    object-fit: cover; /* Cobre o espaço mantendo proporção */
+    border-radius: 8px; /* Bordas arredondadas */
+    margin-bottom: 12px; /* Espaço abaixo */
+    border: 1px solid #3d5a80; /* Borda azul */
+}
+
+.unidade-box h2 {
+    font-size: 1.4rem; /* Tamanho do subtítulo */
+    margin-bottom: 8px; /* Espaço abaixo */
+    color: #213d5b; /* Cor do texto */
+}
+
+.unidade-box p {
+    text-align: center; /* Centraliza texto */
+    font-size: 1.1rem; /* Tamanho da fonte */
+    color: #192c40; /* Cor do texto */
+    margin: 0; /* Remove margem */
+    line-height: 1.5; /* Espaçamento entre linhas */
+}
+
+.unidade-box b {
+    font-size: 1.13rem; /* Tamanho da fonte em negrito */
+    color: #0d1b2a; /* Cor do texto */
+}
+
+/* Responsivo para telas pequenas */
+@media (max-width: 950px) {
+    .unidades-grid {
+        grid-template-columns: 1fr; /* Uma coluna só */
+        gap: 16px; /* Espaço menor */
+    }
+    .unidade-link, .unidade-box {
+        width: 100%; /* Largura total */
+        max-width: 500px; /* Largura máxima */
+    }
+    .unidade-link {
+        justify-content: center; /* Centraliza */
+        margin-left: auto; /* Centraliza */
+        margin-right: auto; /* Centraliza */
+    }
+}
+
+.unidades-visita {
+    text-align: center; /* Centraliza texto */
+    margin-top: 24px; /* Espaço acima */
+    background: #e6f0fa; /* Fundo azul claro */
+    padding: 14px 0; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-weight: bold; /* Negrito */
+    color: #1a2733; /* Cor do texto */
+    font-size: 1.1rem; /* Tamanho da fonte */
+}
+
+/* Rodapé */
+.rodape {
+    width: 100%; /* Largura total */
+    background-color: #002557; /* Fundo azul escuro */
+    display: flex; /* Flexbox */
+    justify-content: space-between; /* Espaço entre colunas */
+    align-items: center; /* Centraliza verticalmente */
+    padding: 20px 40px 10px 40px; /* Espaçamento interno */
+    color: white; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    border-top: 2px solid #444; /* Linha superior */
+    box-sizing: border-box; /* Inclui borda e padding no cálculo */
+    flex-wrap: wrap; /* Permite quebra de linha */
+}
+.paragrafo1,
+.paragrafo2,
+.icones-centro {
+    flex: 1; /* Cada coluna ocupa 1 parte */
+}
+.paragrafo1 {
+    text-align: left; /* Alinha à esquerda */
+}
+.paragrafo2 {
+    text-align: right; /* Alinha à direita */
+}
+.icones-centro {
+    display: flex; /* Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 25px; /* Espaço entre ícones */
+    font-size: 26px; /* Tamanho dos ícones */
+}
+.icones-centro a {
+    color: white; /* Cor dos ícones */
+    text-decoration: none; /* Sem sublinhado */
+    transition: color 0.3s; /* Transição suave */
+}
+.icones-centro a:hover {
+    color: #00bfff; /* Cor ao passar o mouse */
+}
+/* Navegação no final */
+.nav-final {
+    width: 100%; /* Largura total */
+    margin-top: 20px; /* Espaço acima */
+    text-align: center; /* Centraliza */
+}
+.nav-final ul {
+    list-style: none; /* Remove marcadores */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margem */
+    display: flex; /* Flexbox */
+    flex-wrap: wrap; /* Permite quebra de linha */
+    justify-content: center; /* Centraliza */
+    gap: 20px; /* Espaço entre itens */
+    font-weight: normal; /* Remove negrito da fonte */
+}
+.nav-final a {
+    color: white; /* Cor dos links */
+    text-decoration: none; /* Sem sublinhado */
+    font-size: 14px; /* Tamanho da fonte */
+    transition: color 0.3s; /* Transição suave */
+}
+.nav-final a:hover {
+    color: #00bfff; /* Cor ao passar o mouse */
+}
+/* Responsivo */
+@media (max-width: 768px) {
+    .rodape {
+        flex-direction: column; /* Empilha colunas */
+        text-align: center; /* Centraliza texto */
+    }
+    .paragrafo1,
+    .paragrafo2,
+    .icones-centro {
+        flex: unset; /* Remove flex */
+        width: 100%; /* Ocupa toda a largura */
+        margin: 10px 0; /* Espaço vertical */
+        text-align: center; /* Centraliza texto */
+    }
+    .nav-final ul {
+        flex-direction: column; /* Empilha links */
+        gap: 10px; /* Espaço entre links */
+    }
+}
