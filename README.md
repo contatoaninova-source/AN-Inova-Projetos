@@ -26,17 +26,17 @@
 
 ## 📂 Portfólio
 
-🚧 (https://aninovasites.xo.je/)  
+🚧 https://aninovasites.xo.je/  
 
 ---
 
 ## 📬 Contato
 
-- 📧 **Email:** antonysilvama874@gmail.com  
+- 📧 **Email:** contato.aninova@gmail.com  
 - 📱 **WhatsApp:** [Clique aqui](https://wa.me/5511968111733)  
 - 📸 **Instagram:** [aninova_sites](https://www.instagram.com/aninova_sites/#)  
 - 💼 **LinkedIn:** [Antony Nelson da Silva](https://www.linkedin.com/in/antony-nelson-da-silva-4b8a56315)  
-- 🐙 **GitHub:** [Seu Perfil](https://github.com/)  
+- 🐙 **GitHub:** [Acesse o Perfil](https://github.com/contatoaninova-source)  
 
 ---
 
